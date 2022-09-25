@@ -40,4 +40,15 @@ function onGalleryContainerClick(event) {
         `<img src="${event.target.dataset.source}" width="800" height="600">`
     );
     instance.show();
+
+    window.addEventListener('keydown', onEscPress);
+
+    function onEscPress(event) {
+        const Esc_code = 'Escape';
+        const isEscPress = event.code === Esc_code;
+
+        if (isEscPress) {
+            instance.close();
+        }
+    }
 }
