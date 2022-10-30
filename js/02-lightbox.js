@@ -5,8 +5,9 @@ console.log(galleryItems);
 
 const gallery = document.querySelector('.gallery');
 const galleryMarkup = galleryItems
-    .map(({ preview, original, description }) =>
-        `<li>
+    .map(
+        ({ preview, original, description }) =>
+            `<li>
             <a class="gallery__item" href="${original}">
                 <img
                     class="gallery__image"
@@ -14,7 +15,8 @@ const galleryMarkup = galleryItems
                     alt="${description}"
                 />
             </a>
-        </li>`)
+        </li>`
+    )
     .join('');
 
 console.log(galleryMarkup);
