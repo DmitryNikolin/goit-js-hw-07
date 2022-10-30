@@ -4,31 +4,44 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const gallery = document.querySelector('.gallery');
-const galleryMarkup = createMarkup(galleryItems);
+const galleryMarkup = galleryItems
+    .map(({ preview, original, description }) =>
+        `<div class="gallery__item">
+            <a class="gallery__link" href="${preview}">
+                <img
+                    class="gallery__image"
+                    src="${preview}"
+                    data-source="${original}"
+                    alt="${description}"
+                />
+            </a>
+        </div>`)
+    .join('');
+
 console.log(galleryMarkup);
 
 gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
 gallery.addEventListener('click', onGalleryContainerClick);
 
-function createMarkup(galleryItems) {
-    return galleryItems
-        .map(({ preview, original, description }) => {
-            return `
-                <div class="gallery__item">
-                    <a class="gallery__link" href="${preview}">
-                        <img
-                            class="gallery__image"
-                            src="${preview}"
-                            data-source="${original}"
-                            alt="${description}"
-                        />
-                    </a>
-                </div>
-            `;
-        })
-        .join('');
-}
+// function createMarkup(galleryItems) {
+//     return galleryItems
+//         .map(({ preview, original, description }) => {
+//             return `
+//                 <div class="gallery__item">
+//                     <a class="gallery__link" href="${preview}">
+//                         <img
+//                             class="gallery__image"
+//                             src="${preview}"
+//                             data-source="${original}"
+//                             alt="${description}"
+//                         />
+//                     </a>
+//                 </div>
+//             `;
+//         })
+//         .join('');
+// }
 
 function onGalleryContainerClick(event) {
     event.preventDefault();
